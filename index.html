@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频教程</title>
+
+<!-- Video.js（本地） -->
+<link href="vendor/video-js.css" rel="stylesheet">
+
+<!-- 样式 -->
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/player.css">
+<link rel="stylesheet" href="css/sidebar.css">
+</head>
+<body>
+
+<!-- 全屏加载遮罩 -->
+<div id="app-loading">
+  <div class="apl-scene">
+    <div class="apl-ring apl-ring-1"></div>
+    <div class="apl-ring apl-ring-2"></div>
+    <div class="apl-ring apl-ring-3"></div>
+    <div class="apl-core">
+      <div class="apl-core-inner"></div>
+    </div>
+    <div class="apl-particles">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="apl-text">
+    <span class="apl-label">INITIALIZING</span>
+    <span class="apl-dots"><span>.</span><span>.</span><span>.</span></span>
+  </div>
+  <div class="apl-scanline"></div>
+</div>
+
+<!-- 导航栏 -->
+<nav class="nav">
+  <div class="nav-logo" id="nav-logo">课程</div>
+  <div class="nav-tabs">
+    <span class="nav-tab active" id="tab-full"    onclick="vchapSetMode('full')">完整视频</span>
+    <span class="nav-tab"        id="tab-chapter" onclick="vchapSetMode('chapter')">章节模式</span>
+  </div>
+  <div class="nav-spacer"></div>
+  <span class="nav-badge" id="nav-badge">加载中…</span>
+</nav>
+
+<!-- 页面容器 -->
+<div class="page mode-full" id="page">
+
+  <!-- 播放器区域 -->
+  <section class="player-area" id="player-area">
+
+    <!-- Video.js 容器 -->
+    <div class="video-wrap">
+      <video
+        id="main-vid"
+        class="video-js vjs-default-skin vjs-big-play-centered"
+        playsinline
+        preload="auto"
+      ></video>
+      <!-- 当前分辨率徽章 -->
+      <div id="vchap-quality-badge" class="vchap-quality-badge"></div>
+      <!-- 点击区域（透明，用于播放/暂停） -->
+      <div id="click-overlay"></div>
+      <!-- 章节切换淡黑遮罩 -->
+      <div class="video-flash" id="video-flash"></div>
+      <!-- 缓冲加载动画 -->
+      <div id="loading-spinner" style="display:none">
+        <div class="spinner-ring"></div>
+      </div>
+      <!-- 错误提示遮罩 -->
+      <div id="error-overlay" style="display:none">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="rgba(224,92,75,0.9)">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+        </svg>
+        <p class="error-msg">视频加载失败</p>
+        <p class="error-hint">点击关闭</p>
+      </div>
+    </div>
+
+    <!-- 自定义控制栏 -->
+    <div class="controls">
+
+      <!-- 当前章节标签 -->
+      <div class="chap-label-row">
+        <span class="chap-label-text" id="chap-label">—</span>
+      </div>
+
+      <!-- 进度条 -->
+      <div class="progress-wrap" id="prog-wrap">
+        <div class="progress-track" id="prog-track">
+          <div class="prog-buf"    id="prog-buf"    style="width:0%"></div>
+          <div class="prog-played" id="prog-played" style="width:0%"></div>
+          <div class="prog-thumb"  id="prog-thumb"  style="left:0%"></div>
+          <div class="hover-tip" id="hover-tip">
+            <span class="htip-time">0:00</span>
+            <span class="htip-chap"></span>
+          </div>
+          <!-- 章节标记由 JS 动态注入 -->
+        </div>
+      </div>
+
+      <!-- 按钮行 -->
+      <div class="btn-row">
+
+        <!-- 上一章 -->
+        <button class="c-btn" id="btn-prev" title="上一章">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/>
+          </svg>
+        </button>
+
+        <!-- 播放/暂停 -->
+        <button class="c-btn" id="btn-play" title="播放/暂停（K 或空格）">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" id="play-icon">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </button>
+
+        <!-- 下一章 -->
+        <button class="c-btn" id="btn-next" title="下一章">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 18l8.5-6L6 6v12zm2-8.14 5.01 2.14L8 14.14V9.86zM16 6h2v12h-2z"/>
+          </svg>
+        </button>
+
+        <!-- 时间显示 -->
+        <span class="time-disp" id="time-disp">0:00 / 0:00</span>
+
+        <div class="spacer"></div>
+
+        <!-- 章节过渡开关 -->
+        <div class="transition-toggle" id="transition-toggle" title="章节切换过渡效果">
+          <div class="toggle-track" id="toggle-track">
+            <div class="toggle-thumb"></div>
+          </div>
+          过渡
+        </div>
+
+        <!-- 分辨率切换（有 qualities 配置时显示） -->
+        <div class="vchap-res-wrap" id="vchap-res-wrap">
+          <button class="vchap-res-btn" id="vchap-res-btn">画质</button>
+          <div class="vchap-res-menu" id="vchap-res-menu">
+            <div class="vchap-res-menu-inner" id="vchap-res-menu-inner">
+              <!-- 由 JS 动态注入 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 倍速 -->
+        <div class="speed-wrap">
+          <button class="speed-btn" id="speed-btn">1×</button>
+          <div class="speed-menu" id="speed-menu">
+            <div class="speed-menu-inner">
+              <div class="speed-opt" data-speed="2">2×</div>
+              <div class="speed-opt" data-speed="1.5">1.5×</div>
+              <div class="speed-opt" data-speed="1.25">1.25×</div>
+              <div class="speed-opt active" data-speed="1">1×</div>
+              <div class="speed-opt" data-speed="0.75">0.75×</div>
+              <div class="speed-opt" data-speed="0.5">0.5×</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 音量 -->
+        <div class="vol-wrap">
+          <button class="c-btn" id="btn-mute" title="静音（M）">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" id="vol-icon">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+          </button>
+          <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.05" value="1">
+        </div>
+
+        <!-- 全屏（F） -->
+        <button class="c-btn" id="btn-fs" title="全屏（F）">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" id="fs-icon">
+            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+          </svg>
+        </button>
+
+      </div><!-- /btn-row -->
+    </div><!-- /controls -->
+  </section><!-- /player-area -->
+
+  <!-- 侧边栏（章节模式时显示） -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>课程目录</h2>
+      <p id="sidebar-sub">共 7 章节</p>
+    </div>
+    <div class="total-prog-wrap">
+      <div class="total-prog-label">
+        <span>课程进度</span>
+        <span id="prog-pct">0%</span>
+      </div>
+      <div class="total-prog-bar">
+        <div class="total-prog-fill" id="total-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="ch-list" id="ch-list"></div>
+  </aside>
+
+</div><!-- /page -->
+
+<!-- Video.js（本地） -->
+<script src="vendor/video.min.js"></script>
+
+<!-- JS 模块（顺序重要：config → utils → state → player → controls → sidebar → app） -->
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/player.js"></script>
+<script src="js/controls.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

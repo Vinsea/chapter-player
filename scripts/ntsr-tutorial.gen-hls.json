@@ -1,0 +1,227 @@
+{
+  "outBase": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/hls",
+  "segSeconds": 6,
+  "chapters": [
+    {
+      "key": "ch01",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/1_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/1.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch02",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/2+3_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/2+3.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch03",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/4_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/4.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch04",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/5_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/5.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch05",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/6_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/6.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch06",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/7_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/7.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch07",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/8_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/8.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch08",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/9_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/9.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch09",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/10_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/10.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch10",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/11_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/11.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch11",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/12_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/12.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch12",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/13_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/13.mp4"
+        }
+      ]
+    },
+    {
+      "key": "ch13",
+      "variants": [
+        {
+          "label": "720P",
+          "bandwidth": 450000,
+          "resolution": "1280x720",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/720p/14_720p.mp4"
+        },
+        {
+          "label": "1080P",
+          "bandwidth": 9000000,
+          "resolution": "1920x1080",
+          "src": "D:/workspace/Wisplm/platform/storydeck/records/common-assets/ntsr-tutorial/14.mp4"
+        }
+      ]
+    }
+  ]
+}

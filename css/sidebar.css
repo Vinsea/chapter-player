@@ -1,0 +1,148 @@
+/* ── Sidebar ── */
+.sidebar {
+  width: var(--sidebar-w); flex-shrink: 0;
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  background: var(--bg);
+  position: relative;
+}
+.sidebar::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0; width: 1px;
+  background: linear-gradient(180deg, var(--cyan-dim), var(--purple-dim), transparent);
+  pointer-events: none; z-index: 1;
+}
+
+.sidebar-header {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.sidebar-header h2 {
+  font-family: var(--font-disp);
+  font-size: 11px; font-weight: 600;
+  color: var(--cyan);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 3px;
+  text-shadow: 0 0 12px var(--cyan-dim);
+}
+.sidebar-header p {
+  font-family: var(--font-mono); font-size: 9px;
+  color: var(--text-dim); letter-spacing: 0.08em;
+}
+
+/* Total progress */
+.total-prog-wrap {
+  padding: 9px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.total-prog-label {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 9px;
+  color: var(--text-dim); margin-bottom: 6px;
+  letter-spacing: 0.06em;
+}
+.total-prog-bar {
+  height: 2px; background: rgba(0,200,255,0.06);
+  border-radius: 2px; overflow: hidden;
+}
+.total-prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+  box-shadow: 0 0 6px rgba(0,200,255,0.4);
+  transition: width 0.4s ease;
+}
+
+/* Chapter list */
+.ch-list {
+  flex: 1; min-height: 0;
+  overflow-y: auto; padding: 6px 0;
+}
+.ch-list::-webkit-scrollbar { width: 2px; }
+.ch-list::-webkit-scrollbar-thumb {
+  background: rgba(0,200,255,0.2); border-radius: 2px;
+}
+.ch-list::-webkit-scrollbar-track { background: transparent; }
+
+/* Chapter item */
+.ch-item {
+  display: flex; align-items: flex-start; gap: 11px;
+  padding: 10px 16px; cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
+  position: relative;
+}
+.ch-item::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0,200,255,0.04), transparent);
+  opacity: 0; transition: opacity 0.15s; pointer-events: none;
+}
+.ch-item:hover::after { opacity: 1; }
+.ch-item:hover { background: rgba(0,200,255,0.025); }
+.ch-item.active {
+  background: rgba(0,200,255,0.04);
+  border-left-color: var(--cyan);
+  box-shadow: inset 0 0 20px rgba(0,200,255,0.03);
+}
+.ch-item.active::after { opacity: 1; }
+
+/* Chapter number box */
+.ch-num {
+  position: relative; min-width: 22px; height: 22px;
+  background: rgba(0,200,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 9px; color: var(--text-dim);
+  flex-shrink: 0; margin-top: 1px; transition: all 0.15s;
+  letter-spacing: 0;
+}
+.ch-item.active .ch-num {
+  background: rgba(0,200,255,0.1);
+  border-color: var(--cyan-dim);
+  color: var(--cyan);
+  box-shadow: 0 0 10px rgba(0,200,255,0.2);
+}
+.ch-item.watched .ch-num::after {
+  content: '✓'; position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,200,255,0.08); color: var(--cyan); font-size: 9px;
+}
+
+.ch-info { flex: 1; min-width: 0; }
+.ch-title {
+  font-size: 12px; font-weight: 400; color: var(--text);
+  line-height: 1.4; margin-bottom: 3px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ch-item.active .ch-title { color: var(--cyan); }
+.ch-meta { display: flex; align-items: center; gap: 7px; }
+
+/* Time badge */
+.ch-ts {
+  font-family: var(--font-mono); font-size: 9px; color: var(--cyan);
+  background: rgba(0,200,255,0.06);
+  border: 1px solid rgba(0,200,255,0.15);
+  padding: 1px 6px; border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+.ch-dur {
+  font-family: var(--font-mono); font-size: 9px; color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+.ch-rem {
+  font-family: var(--font-mono); font-size: 9px;
+  color: var(--purple); margin-left: auto;
+  letter-spacing: 0.04em;
+}
+
+/* Live playing dot */
+@keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 4px var(--cyan)} 50%{opacity:0.3;box-shadow:0 0 0 transparent} }
+.live-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--cyan);
+  animation: pulse 1.4s ease infinite; display: none; flex-shrink: 0;
+}
+.ch-item.active.playing .live-dot { display: block; }
